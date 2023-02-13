@@ -28,10 +28,9 @@ func init() {
 	flag.Float64Var(&fahr, "F", 0.0, "temperatur i grader fahrenheit")
 	flag.Float64Var(&celsius, "C", 0.0, "temperatur i grader celsius")
 	flag.Float64Var(&kelvin, "K", 0.0, "temperatur i grader kelvin")
-	// Du må selv definere flag-variablene for "C" og "K"
 	flag.StringVar(&out, "out", "C", "beregne temperatur i C - celsius, F - farhenheit, K- Kelvin")
 	flag.StringVar(&funfacts, "funfacts", "sun", "\"fun-facts\" om sun - Solen, luna - Månen og terra - Jorden")
-	flag.StringVar(&t, "t", "0", "temperaturskala, C, K eller F for funfacts")
+	flag.StringVar(&t, "t", "0.0", "temperaturskala, C, K eller F for funfacts")
 	// Du må selv definere flag-variabelen for -t flagget, som bestemmer
 	// hvilken temperaturskala skal brukes når funfacts skal vises
 
@@ -41,47 +40,39 @@ func main() {
 
 	flag.Parse()
 
-	/**
-	    Her må logikken for flaggene og kall til funksjoner fra conv og funfacts
-	    pakkene implementeres.
-
-	    Det er anbefalt å sette opp en tabell med alle mulige kombinasjoner
-	    av flagg. flag-pakken har funksjoner som man kan bruke for å teste
-	    hvor mange flagg og argumenter er spesifisert på kommandolinje.
-
-	        fmt.Println("len(flag.Args())", len(flag.Args()))
-			    fmt.Println("flag.NFlag()", flag.NFlag())
-
-	    Enkelte kombinasjoner skal ikke være gyldige og da må kontrollstrukturer
-	    brukes for å utelukke ugyldige kombinasjoner:
-	    -F, -C, -K kan ikke brukes samtidig
-	    disse tre kan brukes med -out, men ikke med -funfacts
-	    -funfacts kan brukes kun med -t
-	    ...
-	    Jobb deg gjennom alle tilfellene. Vær obs på at det er en del sjekk
-	    implementert i flag-pakken og at den vil skrive ut "Usage" med
-	    beskrivelsene av flagg-variablene, som angitt i parameter fire til
-	    funksjonene Float64Var og StringVar
-	*/
-
-	// Her er noen eksempler du kan bruke i den manuelle testingen
+	/*
 	fmt.Println(fahr, out, funfacts)
-
 	fmt.Println("len(flag.Args())", len(flag.Args()))
 	fmt.Println("flag.NFlag()", flag.NFlag())
-
 	fmt.Println(isFlagPassed("out"))
+	*/
 
-	// Eksempel på enkel logikk
-	if out == "C" && isFlagPassed("F") {
-		// Kalle opp funksjonen FahrenheitToCelsius(fahr), som da
-		// skal returnere °C
-		fmt.Println(conv.CelsiusToFarhenheit(fahr))
+	
+	if isFlagPassed("out"){
+		if out == "C" && isFlagPassed("F") {
+		fmt.Println(conv.FarhenheitToCelsius(fahr))	
+	    } else if out == "F" && isFlagPassed("C") {
+		fmt.Println(conv.CelsiusToFarhenheit(celsius))
+	   }
 	}
 
+	if isFlagPassed("out"){
+		if out == "K" && isFlagPassed("C") {
+		fmt.Println(conv.KelvinToCelsius(celsius))	
+	    } else if out == "C" && isFlagPassed("K") {
+		fmt.Println(conv.CelsiusToKelvin(kelvin))
+	   }
 	}
 
+	if isFlagPassed("out"){
+		if out == "K" && isFlagPassed("F") {
+		fmt.Println(conv.FarhenheitToKelvin(kelvin))	
+	    } else if out == "F" && isFlagPassed("K") {
+		fmt.Println(conv.KelvinToFarhenheit(fahr))
+	   }
+	}
 
+}
 
 // Funksjonen sjekker om flagget er spesifisert på kommandolinje
 // Du trenger ikke å bruke den, men den kan hjelpe med logikken
