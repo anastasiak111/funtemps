@@ -1,16 +1,6 @@
 package conv
 
-/*
-  I denne pakken skal alle konverteringfunksjonene
-  implementeres. Bruk engelsk.
-    FarhenheitToCelsius
-    CelsiusToFahrenheit
-    KelvinToFarhenheit
-    ...
-*/
-
 import ("math")
-
 
 
 // Konverterer Farhenheit til Celsius
@@ -46,6 +36,10 @@ func CelsiusToKelvin(value float64) float64 {
     result := value + 273.15
      return math.Round(result* 100) / 100
 }
+
+
+
+
 
 
 

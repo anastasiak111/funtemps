@@ -3,12 +3,15 @@ package main
 import (
 	"flag"
 	"fmt"
+	"github.com/ANASTASIK111/funtemps/conv"
 )
 
-// Definerer flag-variablene i hoved-"scope"
 var fahr float64
+var celsius float64 
+var kelvin float64 
 var out string
 var funfacts string
+var t string 
 
 // Bruker init (som anbefalt i dokumentasjonen) for å sikre at flagvariablene
 // er initialisert.
@@ -23,9 +26,12 @@ func init() {
 
 	// Definerer og initialiserer flagg-variablene
 	flag.Float64Var(&fahr, "F", 0.0, "temperatur i grader fahrenheit")
+	flag.Float64Var(&celsius, "C", 0.0, "temperatur i grader celsius")
+	flag.Float64Var(&kelvin, "K", 0.0, "temperatur i grader kelvin")
 	// Du må selv definere flag-variablene for "C" og "K"
 	flag.StringVar(&out, "out", "C", "beregne temperatur i C - celsius, F - farhenheit, K- Kelvin")
 	flag.StringVar(&funfacts, "funfacts", "sun", "\"fun-facts\" om sun - Solen, luna - Månen og terra - Jorden")
+	flag.StringVar(&t, "t", "0", "temperaturskala, C, K eller F for funfacts")
 	// Du må selv definere flag-variabelen for -t flagget, som bestemmer
 	// hvilken temperaturskala skal brukes når funfacts skal vises
 
@@ -70,10 +76,12 @@ func main() {
 	if out == "C" && isFlagPassed("F") {
 		// Kalle opp funksjonen FahrenheitToCelsius(fahr), som da
 		// skal returnere °C
-		fmt.Println("0°F er -17.78°C")
+		fmt.Println(conv.CelsiusToFarhenheit(fahr))
 	}
 
-}
+	}
+
+
 
 // Funksjonen sjekker om flagget er spesifisert på kommandolinje
 // Du trenger ikke å bruke den, men den kan hjelpe med logikken
