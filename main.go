@@ -39,36 +39,28 @@ func init() {
 func main() {
 
 	flag.Parse()
-
-	/*
-	fmt.Println(fahr, out, funfacts)
-	fmt.Println("len(flag.Args())", len(flag.Args()))
-	fmt.Println("flag.NFlag()", flag.NFlag())
-	fmt.Println(isFlagPassed("out"))
-	*/
-
 	
 	if isFlagPassed("out"){
 		if out == "C" && isFlagPassed("F") {
-		fmt.Println(conv.FarhenheitToCelsius(fahr))	
-	    } else if out == "F" && isFlagPassed("C") {
+		fmt.Println (conv.FarhenheitToCelsius(fahr))
+	    } else if out == "F" && isFlagPassed("C") { 
 		fmt.Println(conv.CelsiusToFarhenheit(celsius))
 	   }
 	}
 
 	if isFlagPassed("out"){
 		if out == "K" && isFlagPassed("C") {
-		fmt.Println(conv.KelvinToCelsius(celsius))	
+		fmt.Println(conv.CelsiusToKelvin(celsius))	
 	    } else if out == "C" && isFlagPassed("K") {
-		fmt.Println(conv.CelsiusToKelvin(kelvin))
+		fmt.Println(conv.KelvinToCelsius(kelvin))
 	   }
 	}
 
 	if isFlagPassed("out"){
 		if out == "K" && isFlagPassed("F") {
-		fmt.Println(conv.FarhenheitToKelvin(kelvin))	
+		fmt.Println(conv.FarhenheitToKelvin(fahr))	
 	    } else if out == "F" && isFlagPassed("K") {
-		fmt.Println(conv.KelvinToFarhenheit(fahr))
+		fmt.Println(conv.KelvinToFarhenheit(kelvin))
 	   }
 	}
 

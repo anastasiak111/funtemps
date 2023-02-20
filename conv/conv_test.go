@@ -2,7 +2,6 @@ package conv
 import (
 	"reflect"
 	"testing"
-"github.com/ANASTASIK111/funtemps/conv"
 )
 
 
