@@ -4,7 +4,7 @@ package conv
 
 // Konverterer Farhenheit til Celsius
 func FarhenheitToCelsius(value float64) float64 {
-	  result := (value - 32) * (5.0 / 9.0)
+	  result := (value - 32) * 5 / 9
     return result
 }
 
